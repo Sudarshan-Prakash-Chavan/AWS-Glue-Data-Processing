@@ -4,15 +4,55 @@
 
 This repository contains a comprehensive guide for setting up and executing various AWS Glue tasks, focusing on data cataloging, ETL jobs, and job bookmarks. It includes practical labs demonstrating the integration of AWS services for efficient data processing and management.
 
-![Architectural Diagram](diagrams/architectural-diagram.png)
+## Architectural Diagram
 
+![AWS-Glue-Data-Processing](https://github.com/user-attachments/assets/069b1a0f-6acb-42de-bda9-e3a3b07c4142)
+
+1.   **AWS S3:**
+
+   -   **Input Bucket:** `moviestabledata`
+
+   -   **Output Bucket:** `moviestabledata/transformeddata`
+
+   -   Represents where your `movies.json` file is stored and where the transformed CSV files will be saved.
+
+2.   **AWS Glue:**
+
+   -   **Crawler:**
+
+         -   Represents the `movies-data-crawler` which scans the S3 bucket to create the Data Catalog.
+      
+   -   **Data Catalog:**
+
+         -   Shows the `movies-data-database` and the associated table(s) created by the crawler.
+   -   **ETL Job:**
+
+         -   Represents the `movies-data-job` that processes the data, including the transformations applied.
+
+3.   **Data Flow:**
+
+   -   Arrows indicating the flow of data:
+
+       -   From S3 to Glue Crawler to create the Data Catalog.
+
+       -   From Data Catalog to Glue ETL Job for processing.
+
+       -   From Glue ETL Job back to S3 for saving the transformed data.
+
+4.   **IAM Role:**
+
+   -   Indicates the Master IAM role that provides the necessary permissions for the Glue services to access S3.
+
+5.   **CloudWatch:**
+
+   -   Shows integration for monitoring job metrics and logs.
 
 ## Prerequisites
 
 - An AWS account with permissions to access S3 and Glue.
 - Basic knowledge of AWS services and data processing concepts.
 
-## Lab 1: Setup Glue Data Catalog
+## 1: Setup Glue Data Catalog
 
 ### Prerequisites
 
@@ -43,7 +83,7 @@ This repository contains a comprehensive guide for setting up and executing vari
 5. **Review the Table**: 
    - Navigate to `movies-data-database` and view the created table.
 
-## Lab 2: Setup Glue Job
+## 2: Setup Glue Job
 
 ### Steps
 
@@ -87,7 +127,7 @@ This repository contains a comprehensive guide for setting up and executing vari
 12. **Verify Output**: 
     - Check the `transformeddata` folder for the resulting `.gz` file and extract it to observe the CSV format.
 
-## Lab 3: Job Bookmarks
+## 3: Job Bookmarks
 
 ### Steps
 
